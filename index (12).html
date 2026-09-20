@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TARUN~ARMY #1</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      min-height: 100vh;
+      background: radial-gradient(circle at 30% 20%, #0f5c36 0%, #042818 40%, #021910 100%);
+      font-family: 'Inter', sans-serif;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      color: white;
+      overflow-x: hidden;
+    }
+
+    .dots {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      background-image: radial-gradient(rgba(255,255,255,0.08) 1px, transparent 1px);
+      background-size: 28px 28px;
+      opacity: 0.5;
+    }
+
+    .card {
+      width: 100%;
+      max-width: 380px;
+      background: linear-gradient(145deg, #073d23 0%, #031f12 100%);
+      border-radius: 36px;
+      padding: 48px 28px;
+      text-align: center;
+      box-shadow:
+        0 25px 60px rgba(0,0,0,0.45),
+        inset 0 1px 0 rgba(255,255,255,0.06);
+      position: relative;
+      z-index: 10;
+    }
+
+    .logo-wrap {
+      position: relative;
+      width: 160px;
+      height: 160px;
+      margin: 0 auto 36px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .ring {
+      position: absolute;
+      inset: 0;
+      border-radius: 50%;
+      background: conic-gradient(from 0deg, #2dd573 0%, #8ae06c 30%, #2dd573 60%, transparent 60%);
+      padding: 4px;
+      box-shadow: 0 0 30px rgba(45,213,115,0.2);
+    }
+
+    .ring::before {
+      content: '';
+      position: absolute;
+      inset: 4px;
+      border-radius: 50%;
+      background: linear-gradient(145deg, #073d23 0%, #031f12 100%);
+    }
+
+    .ring::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: 50%;
+      border: 2px solid rgba(45,213,115,0.25);
+    }
+
+    .logo-inner {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+    }
+
+    .logo-inner h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 56px;
+      font-weight: 700;
+      background: linear-gradient(180deg, #8ae06c 0%, #2dd573 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      line-height: 1;
+      letter-spacing: 2px;
+    }
+
+    .logo-inner span {
+      display: block;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 2.5px;
+      color: #a8f0c0;
+      margin-top: 6px;
+      text-transform: uppercase;
+    }
+
+    .badge {
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 3px;
+      color: #8ae06c;
+      text-transform: uppercase;
+      margin-bottom: 14px;
+    }
+
+    .title {
+      font-family: 'Playfair Display', serif;
+      font-size: 52px;
+      font-weight: 700;
+      line-height: 1.05;
+      margin-bottom: 4px;
+    }
+
+    .title .top {
+      background: linear-gradient(180deg, #d9f99d 0%, #4ade80 50%, #22c55e 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .title .bottom {
+      font-style: italic;
+      background: linear-gradient(90deg, #86efac 0%, #22c55e 50%, #16a34a 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .subtitle {
+      font-size: 16px;
+      color: rgba(255,255,255,0.65);
+      margin-top: 16px;
+      margin-bottom: 32px;
+      font-weight: 400;
+    }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 26px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.08);
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: 16px;
+      color: #b4f7c9;
+      margin-bottom: 28px;
+    }
+
+    .pill svg {
+      width: 18px;
+      height: 18px;
+      fill: #86efac;
+    }
+
+    .cta {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      width: 100%;
+      padding: 18px 22px;
+      border-radius: 26px;
+      background: linear-gradient(90deg, #16a34a 0%, #4ade80 50%, #86efac 100%);
+      border: none;
+      color: #052e16;
+      text-decoration: none;
+      box-shadow: 0 12px 30px rgba(34,197,94,0.35);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .cta:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 16px 40px rgba(34,197,94,0.45);
+    }
+
+    .cta-left {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .telegram-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: rgba(5,46,22,0.15);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .telegram-icon svg {
+      width: 24px;
+      height: 24px;
+      fill: #052e16;
+      margin-left: -2px;
+    }
+
+    .cta-text {
+      text-align: left;
+    }
+
+    .cta-text small {
+      display: block;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      opacity: 0.7;
+      text-transform: uppercase;
+    }
+
+    .cta-text strong {
+      display: block;
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: 26px;
+      font-weight: 700;
+      line-height: 1.1;
+    }
+
+    .arrow {
+      width: 24px;
+      height: 24px;
+      stroke: #052e16;
+      stroke-width: 2.5;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      fill: none;
+      flex-shrink: 0;
+    }
+
+    @media (max-width: 420px) {
+      .card {
+        padding: 40px 22px;
+        border-radius: 30px;
+      }
+      .title {
+        font-size: 44px;
+      }
+      .logo-wrap {
+        width: 140px;
+        height: 140px;
+      }
+      .logo-inner h2 {
+        font-size: 46px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="dots"></div>
+
+  <div class="card">
+    <div class="logo-wrap">
+      <div class="ring"></div>
+      <div class="logo-inner">
+        <h2>TA</h2>
+        <span>TAITAN ARMY</span>
+      </div>
+    </div>
+
+    <div class="badge">Official Community</div>
+
+    <h1 class="title">
+      <div class="top">TAITAN ARMY</div>
+      <div class="bottom">#1</div>
+    </h1>
+
+    <p class="subtitle">Community & Latest Updates</p>
+
+    <div class="pill">
+      <svg viewBox="0 0 24 24">
+        <path d="M17,8C8,10,5.9,16.17,3.82,21.34L5.71,22l1.87-6.93C9,16.5,10.86,15.71,12.06,15.85c-3.74,3.44-5.31,6.08-5.31,6.08L5.25,22c-1.21,0-1.6-.73-1.6-1.73,0-.57.3-1.49.3-1.49C5.05,14.66,8.07,9.43,17,8Z"/>
+      </svg>
+      Exclusive Updates & Access
+    </div>
+
+    <a href="https://t.me/+MTNFYFpZQK8xMmJl" class="cta" target="_blank" rel="noopener">
+      <div class="cta-left">
+        <div class="telegram-icon">
+          <svg viewBox="0 0 24 24">
+            <path d="M9.417 15.181l-.397 5.584c.568.0.814-.244 1.109-.537l2.663-2.545 5.518 4.041c1.012.564 1.725.267 1.998-.931l3.62-17.001c.321-1.498-.54-2.081-1.527-1.714l-21.164 8.146c-1.453.564-1.431 1.374-.247 1.741l5.407 1.693 12.559-7.952c.592-.384 1.136-.172.691.212l-10.159 9.177z"/>
+          </svg>
+        </div>
+        <div class="cta-text">
+          <small>Telegram Community</small>
+          <strong>Join Now</strong>
+        </div>
+      </div>
+      <svg class="arrow" viewBox="0 0 24 24">
+        <path d="M9 18l6-6-6-6"/>
+      </svg>
+    </a>
+  </div>
+</body>
+</html>
+    
